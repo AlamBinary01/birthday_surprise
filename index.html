@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Surprise</title>
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Password Protection Overlay -->
+    <div id="password-prompt-overlay">
+        <div id="password-prompt">
+            <h2>Enter Password to Continue</h2>
+            <input type="password" id="password-input" placeholder="Enter Password">
+            <button id="submit-password">Submit</button>
+            <p id="error-message" style="display: none; color: red;">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <div id="volume-reminder">
+        <div id="volume-icon">🔊</div>
+        <p>Please turn up the volume and then click me.</p>
+    </div>
+
+    <audio id="happy-birthday-audio">
+        <source src="/happy-birthday.mp3" type="audio/mpeg">
+        <br><br>
+    </audio>
+
+    <div id="hold-reminder">
+        <p>Press and hold the screen to blow out the candles.</p>
+    </div>
+
+    <div id="congratulation-overlay">
+        <div id="congratulation-text">Happy Birthday!！</div>
+    </div>
+
+    <script>
+        const correctPassword = "19-oct-1999";
+        const passwordOverlay = document.getElementById('password-prompt-overlay');
+        const submitPasswordButton = document.getElementById('submit-password');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+
+        submitPasswordButton.addEventListener("click", function () {
+            if (passwordInput.value === correctPassword) {
+                passwordOverlay.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        });
+
+
+        const audio = document.getElementById('happy-birthday-audio');
+        const volumeReminder = document.getElementById('volume-reminder');
+
+        volumeReminder.addEventListener("click", function () {
+            audio.play();
+            volumeReminder.classList.remove('show');
+            setTimeout(function () {
+                volumeReminder.style.display = 'none';
+            }, 1000);
+        });
+
+        window.addEventListener('load', function () {
+            volumeReminder.classList.add('show');
+        });
+    </script>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
