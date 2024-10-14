@@ -22,7 +22,7 @@ function addBirthdayWish(name) {
 }
 
 // Call with the person's name
-addBirthdayWish('Ameen');
+addBirthdayWish('Seher Ameen');
 
 
 // SECTION constants
